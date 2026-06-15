@@ -26,7 +26,6 @@ function Home() {
     <div>
       <div className="container">
         <Navbar />
-
         <div className="filtericons">
           <FilterIcons />
         </div>
@@ -43,9 +42,9 @@ function Home() {
             );
           })}
         </div>
-      </div>
-      <div className="footer" style={{ width: "100%", height: "80px" }}>
-        <Footer />
+        <div>
+          <Footer />
+        </div>
       </div>
     </div>
   );
