@@ -4,6 +4,8 @@ import Star from "./Star";
 import Comment from "./Comment";
 import Button from "../../Button";
 import Footer from "../../Footer";
+import Navbar from "../../Navbar";
+import "../home/Home.css"
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -43,6 +45,7 @@ function Details() {
   return (
     <div className="row">
       <div className=" col-5 offset-4 mt-3">
+        <Navbar/> <br />
         <DetailedCard ClickedCardData={clickedCardData} />
         <br />
         <div className="d-flex gap-2">
@@ -58,6 +61,7 @@ function Details() {
       <div className=" col-6 offset-4">
         <Comment />
       </div>
+     
       <div className="col-12">
     <Footer/>
       </div>

@@ -2,7 +2,7 @@ function DetailedCard({ ClickedCardData }) {
   if (!ClickedCardData) return <p>Loading...</p>;
   return (
     <div>
-      <div style={{ marginRight: "10px", border: "none" }}>
+      <div style={{ marginRight: "10px", border: "none",marginTop:"60px" }}>
         <b>{ClickedCardData.title}</b> <br /> <br />
         <img
           style={{ objectFit: "cover" }}
