@@ -1,6 +1,6 @@
 import joi from "joi"
 
-const listingSchema = joi.object({
+export const listingSchema = joi.object({
 
     title: joi.string().alphanum().min(3).max(30).required(),
     description: joi.string().alphanum().required(),
@@ -14,5 +14,9 @@ const listingSchema = joi.object({
 
 
 })
+export const reviewSchema = joi.object({
+    comment: joi.string().min(1).required(),
+    rating: joi.number().min(0).max(5).required(),
 
-export default listingSchema
+
+})

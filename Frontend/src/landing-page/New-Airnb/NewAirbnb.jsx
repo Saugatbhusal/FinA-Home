@@ -12,6 +12,7 @@ function NewAirbnb() {
     price: "",
   });
   const navigate = useNavigate();
+
   function handleChange(e) {
     setFormdata((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
