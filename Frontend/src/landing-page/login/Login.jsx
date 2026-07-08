@@ -20,10 +20,10 @@ function Login() {
     }
    async function handleSubmit(event){
     event.preventDefault()
-    console.log("1. handleSubmit called, formdata:", formdata);
+    
         try {
-            console.log("2. about to fetch");
-            const res= await fetch("http://localhost:8080/auth/login",{
+            
+            const res= await fetch("http://localhost:8080/user/login",{
                 method:"POST",
                 credentials:"include",
                 headers:{
@@ -32,17 +32,17 @@ function Login() {
                
                 body:JSON.stringify(formdata)
             })
-            console.log("3. fetch resolved, status:", res.status);
+            
             const data= await res.json()
-            console.log("4. parsed data:", data);
+            
             if(data.success){
                 setUser({
                     username:data.username
                 })
-                console.log("setuser changed")
                 navigate("/")
             }else{
                 console.log("failed")
+                
             }
             
         } catch (error) {

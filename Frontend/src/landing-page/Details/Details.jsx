@@ -17,7 +17,7 @@ function Details() {
 
   async function fetchClickedCardData() {
     try {
-      const res = await fetch(`http://localhost:8080/listings/detail/${id}`);
+      const res = await fetch(`http://localhost:8080/listings/${id}`);
       const data = await res.json();
       setClickedCardData(data);
     } catch (err) {
@@ -48,19 +48,23 @@ function Details() {
 
   async function handleDelete() {
     try {
-      const res = await fetch(`http://localhost:8080/listing/${id}`, {
+      const res = await fetch(`http://localhost:8080/listings/${id}`, {
         method: "DELETE",
         credential: "include",
       });
+      const result= await res.json()
+      if(result.success){
+        navigate("/listings")
+      }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
   function handleEdit() {
     navigate(`/listing/edit/${id}`);
   }
 
-  async function handleSubmit(e) {
+  async function handleReviewSubmit(e) {
     e.preventDefault();
     try {
       const res = await fetch(`http://localhost:8080/listings/${id}/review`, {
@@ -72,7 +76,7 @@ function Details() {
         body: JSON.stringify(review),
       });
       let result = await res.json();
-      console.log(result);
+      
       if (result.success === true) {
         setReview({ rating: 1, comment: "" });
         fetchClickedCardData();
@@ -101,7 +105,7 @@ function Details() {
         <hr />
         <div>
           <ReviewFrom
-            handleSubmit={handleSubmit}
+            handleSubmit={handleReviewSubmit}
             review={review}
             setReview={setReview}
           />

@@ -20,12 +20,6 @@ router.post("/signup", async(req, res) => {
     }
 })
 
-router.post("/login", passport.authenticate('local', {
-        failureRedirect: '/'
-    }),
-    (req, res) => {
 
-        res.json({ success: true, username: req.body.username });
-    })
 
 export default router

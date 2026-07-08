@@ -8,9 +8,11 @@ import { Strategy as LocalStrategy } from "passport-local";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import listingRouter from "./routes/listing.js"
+import userRouter from "./routes/users.js"
 import authRouter from "./routes/auth.js"
-import Review from "./models/review.js"
-import { validatingReview } from "./middleware.js"
+import reviewRouter from "./routes/review.js"
+
+
 
 const app = express();
 app.use(cors({
@@ -55,60 +57,11 @@ passport.deserializeUser(async(id, done) => { // it retreives the whole user obj
 
 app.use(["/", "/listings"], listingRouter)
 app.use("/auth", authRouter)
-
-app.get("/user", (req, res) => {
-    if (req.isAuthenticated()) {
-
-        res.json({
-            authenticated: true,
-            user: {
-                username: req.user.username
-            }
-        })
-    }
-})
-
-app.post("/auth/logout", (req, res) => {
-    req.logout((error) => {
-        console.log("logouted")
-        console.log(error)
-        res.json({ success: true })
-    })
-})
-app.post("/listings/:id/review", validatingReview, async(req, res, next) => {
-    try {
-        const { id } = req.params
-        const listing = await Listing.findById(id)
-        let newReview = new Review(req.body)
-        await newReview.save()
-        listing.reviews.push(newReview)
-        await listing.save()
-        res.json({ success: true })
-
-
-    } catch (error) {
-        next(error)
-
-    }
-
-})
-
-app.delete("/listings/:id/review/:reviewId", async(req, res) => {
-    try {
-        const { id, reviewId } = req.params
-        await Review.findByIdAndDelete(reviewId)
-        await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } })
-        res.json({ success: true })
-    } catch (error) {
-        console.log(error)
-    }
+app.use("/listings/:id/review", reviewRouter)
+app.use("/user", userRouter)
 
 
 
-
-
-
-})
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong" } = err
     console.log("server", message)

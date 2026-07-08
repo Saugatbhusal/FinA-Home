@@ -11,7 +11,7 @@ function Navbar() {
   
   async function handleLougout(){
    
-    const res=await fetch("http://localhost:8080/auth/logout",{method:"POST",
+    const res=await fetch("http://localhost:8080/user/logout",{method:"POST",
       credentials:"include"
     })
     const response= await res.json()
