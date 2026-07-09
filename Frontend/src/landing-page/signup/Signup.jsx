@@ -25,8 +25,11 @@ function Signup() {
         },
         body: JSON.stringify(formdata), // object to json
       });
-      if (res.ok) {
+      const result= await res.json()
+      if (result.success) {
         navigate("/");
+      }else{
+        console.log(result.message)
       }
     } catch (error) {
       console.log("Error :", error);

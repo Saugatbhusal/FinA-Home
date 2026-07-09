@@ -12,7 +12,7 @@ router.post("/login", (req, res, next) => {
 
             if (!user) {
                 // auth failed — user not found or wrong password
-                return res.json({ success: false, message: "Invalid credentials" })
+                return res.json({ success: false, message: "invalid credintail" })
             }
 
             // auth passed — manually log the user in

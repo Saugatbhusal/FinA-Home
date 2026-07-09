@@ -41,7 +41,7 @@ function Login() {
                 })
                 navigate("/")
             }else{
-                console.log("failed")
+                console.log(data.message)
                 
             }
             

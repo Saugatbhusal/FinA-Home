@@ -13,9 +13,9 @@ router.post("/signup", async(req, res) => {
 
         })
         const registeredUser = await User.register(newUser, password)
-
+        res.json({ success: true })
     } catch (err) {
-        console.log("Error message", err)
+        res.json({ success: false, message: err.message })
 
     }
 })
