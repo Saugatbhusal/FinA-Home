@@ -2,8 +2,8 @@ import joi from "joi"
 
 export const listingSchema = joi.object({
 
-    title: joi.string().alphanum().min(3).max(30).required(),
-    description: joi.string().alphanum().required(),
+    title: joi.string().min(3).max(30).required(),
+    description: joi.string().required(),
     image: joi.object({
         url: joi.string().allow("", null),
         filename: joi.string()

@@ -12,5 +12,7 @@ router.get(["/", "/listings"], wrapAsync(listingController.listingHome))
 router.post("/new", validateListing, wrapAsync(listingController.listingNew))
 router.route("/:id").get(wrapAsync(listingController.listingDetailedPage))
     .delete(wrapAsync(listingController.deleteListing))
+    .put(validateListing, listingController.editListing)
+router.get("/edit/:id", wrapAsync(listingController.listingData))
 
 export default router

@@ -33,9 +33,9 @@ function Details() {
           credential: "include",
         }
       );
-      const result= await res.json()
-      if(result.success){
-        fetchClickedCardData()
+      const result = await res.json();
+      if (result.success) {
+        fetchClickedCardData();
       }
     } catch (error) {
       console.log(error);
@@ -52,16 +52,16 @@ function Details() {
         method: "DELETE",
         credential: "include",
       });
-      const result= await res.json()
-      if(result.success){
-        navigate("/listings")
+      const result = await res.json();
+      if (result.success) {
+        navigate("/listings");
       }
     } catch (error) {
       console.log(error.message);
     }
   }
   function handleEdit() {
-    navigate(`/listing/edit/${id}`);
+    navigate(`/listings/edit/${id}`);
   }
 
   async function handleReviewSubmit(e) {
@@ -76,7 +76,7 @@ function Details() {
         body: JSON.stringify(review),
       });
       let result = await res.json();
-      
+
       if (result.success === true) {
         setReview({ rating: 1, comment: "" });
         fetchClickedCardData();
@@ -121,6 +121,7 @@ function Details() {
           })}
         </div>
       </div>
+
       <div className="col-12">
         <Footer />
       </div>

@@ -7,13 +7,13 @@ const listingHome = async(req, res) => {
 
 const listingDetailedPage = async(req, res) => {
     const { id } = req.params
-    console.log("listingdetailedcontroller")
+
     const singleCardData = await Listing.findById(id).populate("reviews")
     res.json(singleCardData)
 }
 
 const listingNew = async(req, res) => {
-    console.log("listingNewcontroller")
+
     const newListing = new Listing(req.body)
     await newListing.save()
     res.json({ ok: true })
@@ -21,11 +21,26 @@ const listingNew = async(req, res) => {
 
 const deleteListing = async(req, res) => {
     const { id } = req.params
-    console.log("listingdeletecontroller")
+
     await Listing.findByIdAndDelete(id)
     res.json({ success: true })
 
 }
+const listingData = async(req, res) => {
+    const { id } = req.params
+
+    const singleCardData = await Listing.findById(id)
+    res.json(singleCardData)
 
 
-export default { listingHome, listingDetailedPage, listingNew, deleteListing }
+}
+
+const editListing = async(req, res) => {
+    const { id } = req.params
+    let newListing = req.body
+    let listing = await Listing.findByIdAndUpdate(id, newListing, { new: false })
+    res.json({ success: true })
+
+}
+
+export default { listingHome, listingDetailedPage, listingNew, deleteListing, listingData, editListing }
