@@ -16,6 +16,10 @@ const listingSchmea = new Schema({
         filename: String
 
     },
+    geometry: {
+        lat: Number,
+        lng: Number,
+    },
     category: {
         type: String,
         enum: ["Mountain", "Beach", "Castel", "Camping", "Village", "Amazon", "Dome"]

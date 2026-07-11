@@ -8,7 +8,10 @@ function NewAirbnb() {
     title: "",
     description: "",
     location: "",
-    image: "",
+    image: {
+      url:"",
+      filename:""
+    },
     price: "",
   });
   const navigate = useNavigate();

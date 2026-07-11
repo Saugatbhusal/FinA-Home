@@ -10,7 +10,11 @@ export const listingSchema = joi.object({
     }),
     price: joi.number().min(0).required(),
     location: joi.string().required(),
-    country: joi.string().required()
+    country: joi.string().required(),
+    geometry: joi.object({
+        lat: joi.number(),
+        lng: joi.number()
+    })
 
 
 })

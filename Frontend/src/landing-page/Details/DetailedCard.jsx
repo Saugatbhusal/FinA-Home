@@ -1,3 +1,4 @@
+import ListingMap from "./ListingMap";
 function DetailedCard({ ClickedCardData }) {
   if (!ClickedCardData) return <p>Loading...</p>;
   return (
@@ -27,6 +28,10 @@ function DetailedCard({ ClickedCardData }) {
             </p>
 
             {ClickedCardData.location}
+          </div>
+          <div>
+            {ClickedCardData?.geometry != null &&<ListingMap lat={-37.8136} lng={144.9631} title="Test — Melbourne" />}
+          
           </div>
         </div>
       </div>

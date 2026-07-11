@@ -1,4 +1,5 @@
 import Listing from '../models/listing.js'
+import geocode from '../geocode.js';
 
 const listingHome = async(req, res) => {
     const allListings = await Listing.find();
@@ -13,8 +14,10 @@ const listingDetailedPage = async(req, res) => {
 }
 
 const listingNew = async(req, res) => {
-
+    const { location, country } = req.body
     const newListing = new Listing(req.body)
+    const data = await geocode(location, country)
+    if (data) newListing.geometry = data
     await newListing.save()
     res.json({ ok: true })
 }

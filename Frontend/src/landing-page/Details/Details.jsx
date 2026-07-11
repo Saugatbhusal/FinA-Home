@@ -120,7 +120,7 @@ function Details() {
             );
           })}
         </div>
-      </div>
+      </div>      
 
       <div className="col-12">
         <Footer />
