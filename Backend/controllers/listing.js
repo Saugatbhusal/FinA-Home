@@ -1,5 +1,7 @@
 import Listing from '../models/listing.js'
 import geocode from '../geocode.js';
+import cloudinary from "../cloudinary.js"
+import "dotenv/config"
 
 const listingHome = async(req, res) => {
     const allListings = await Listing.find();
@@ -15,6 +17,7 @@ const listingDetailedPage = async(req, res) => {
 
 const listingNew = async(req, res) => {
     const { location, country } = req.body
+    console.log(req.body)
     const newListing = new Listing(req.body)
     const data = await geocode(location, country)
     if (data) newListing.geometry = data
@@ -45,5 +48,15 @@ const editListing = async(req, res) => {
     res.json({ success: true })
 
 }
+const imageSignature = async(req, res) => {
+    const timeStamp = Math.round(Date.now() / 1000) // cratting and converting time stamp to sec
 
-export default { listingHome, listingDetailedPage, listingNew, deleteListing, listingData, editListing }
+    const signature = cloudinary.utils.api_sign_request({ timestamp: timeStamp }, process.env.CLOUDINARY_API_SECRET)
+    res.json({
+        signature,
+        timeStamp,
+        apiKey: process.env.CLOUDINARY_API_KEY,
+        cloudname: process.env.CLOUDINARY_CLOUD_NAME
+    })
+}
+export default { listingHome, listingDetailedPage, listingNew, deleteListing, listingData, editListing, imageSignature }

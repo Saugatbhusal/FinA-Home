@@ -7,8 +7,9 @@ export const listingSchema = joi.object({
     image: joi.object({
         url: joi.string().allow("", null),
         filename: joi.string()
-    }),
+    }).allow(null),
     price: joi.number().min(0).required(),
+    category: joi.string(),
     location: joi.string().required(),
     country: joi.string().required(),
     geometry: joi.object({

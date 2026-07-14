@@ -24,3 +24,13 @@ export const validatingReview = (req, res, next) => {
         next()
     }
 }
+
+export const isLoggedin = (req, res, next) => {
+    console.log("inside isloggerin")
+    if (req.isAuthenticated()) {
+        next()
+    } else {
+        console.log("user not logged in")
+        res.status(401).json({ error: "please login to continue" })
+    }
+}

@@ -60,8 +60,6 @@ app.use("/auth", authRouter)
 app.use("/listings/:id/review", reviewRouter)
 app.use("/user", userRouter)
 
-
-
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong" } = err
     console.log("server", message)

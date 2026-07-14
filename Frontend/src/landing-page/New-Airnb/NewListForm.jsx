@@ -1,6 +1,6 @@
 import Button from "../../Button";
 
-function NewListForm({handleChange,handleSubmit}) {
+function NewListForm({handleChange,handleSubmit,handleImage}) {
   return (
     <div className="row mt-5">
       <div className="col-6 offset-3">
@@ -68,7 +68,7 @@ function NewListForm({handleChange,handleSubmit}) {
             <input
               type="file"
               name="image"
-              onChange={handleChange}
+              onChange={handleImage}
               className="form-control-file"
               id="exampleFormControlFile1"
             />

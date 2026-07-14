@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import EditForm from "./EditForm";
 import { useParams, useNavigate } from "react-router-dom";
+import ApiFetch from "../../ApiFetch"
 
 function Editpage() {
   const [listingDetail, setListingDetail] = useState(null);
@@ -10,6 +11,9 @@ function Editpage() {
   const fectchDataForEdit = async () => {
     const result = await fetch(`http://localhost:8080/listings/edit/${id}`);
     const data = await result.json();
+    if(result.status===401){
+      navigate("/signup")
+    }
     setListingDetail({
       title: data.title,
       description: data.description,

@@ -1,5 +1,5 @@
 async function geocode(city, country) {
-
+    console.log("form new call")
 
     const query = `${city}, ${country}`
 

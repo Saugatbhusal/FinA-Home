@@ -7,7 +7,7 @@ function DetailedCard({ ClickedCardData }) {
         <b>{ClickedCardData.title}</b> <br /> <br />
         <img
           style={{ objectFit: "cover" }}
-          src={`${ClickedCardData.image.url}`}
+          src={`${ClickedCardData.image?.url || "https://thumbs.dreamstime.com/b/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available-236105299.jpg"}`}
           className="card-img-top"
           alt="image"
         />
@@ -29,8 +29,10 @@ function DetailedCard({ ClickedCardData }) {
 
             {ClickedCardData.location}
           </div>
+          <hr />
           <div>
-            {ClickedCardData?.geometry != null &&<ListingMap lat={-37.8136} lng={144.9631} title="Test — Melbourne" />}
+            <h4>Where you will be</h4>
+            {ClickedCardData?.geometry != null &&<ListingMap lat={ClickedCardData.geometry.lat} lng={ClickedCardData.geometry.lng} title="Test — Melbourne" />}
           
           </div>
         </div>
